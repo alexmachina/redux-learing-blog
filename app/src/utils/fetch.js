@@ -1,8 +1,10 @@
-export function getJson(url, authorization) {
+import Cookies from 'js-cookie'
+
+export function getJson(url) {
   return new Promise((resolve,reject) => {
     fetch(url, {
       headers: new Headers({
-        authorization: authorization
+        authorization: Cookies.get('token')
       })
     }
     ).then(response =>{

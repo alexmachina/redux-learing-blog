@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import posts from './posts.js';
+import postReducer from './posts/posts.js';
 import login from './login.js';
 
 let rootReducer = combineReducers({
-   posts,
+  postsDomain: postReducer,
   login
 })
 

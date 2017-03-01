@@ -12,7 +12,10 @@ export default class AppBar extends React.Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem href="/posts">Posts</NavItem>
+            <NavItem href="/#/posts">Posts</NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem href="">Logout</NavItem>
           </Nav>
         </Navbar>
       </div>

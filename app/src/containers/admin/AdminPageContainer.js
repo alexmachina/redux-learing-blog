@@ -1,9 +1,16 @@
 import AdminPage from '../../components/admin/AdminPage.js'
 import { connect } from 'react-redux'
+import Cookies from 'js-cookie'
 
 let mapStateToProps =  (state) => {
+  let token = state.login.token
+  if(!token) {
+    token = Cookies.get('token')
+    
+  }
+  
   return {
-    token: state.login.token
+    token
   }
 }
 

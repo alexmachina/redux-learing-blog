@@ -17,14 +17,19 @@ export function postPost(post) {
   return dispatch => {
     dispatch(toggleFetching())
     postJson('http://localhost:8080/post', post)
-      .then(() => { dispatch(toggleFetching()) })
+      .then(() => { 
+        dispatch(getPosts())
+        dispatch(toggleFetching()) 
+        dispatch(setPostProperty({title: '', _id:'', body: ''}))
+        dispatch(hideModal())
+      })
 
   }
 }
 
-export function receivePosts(posts) {
+export function setPosts(posts) {
   return {
-    type: 'RECEIVE_POSTS',
+    type: 'SET_POSTS',
     posts: posts
   }
 }
@@ -39,7 +44,9 @@ export function setPostsErrorMessage(errorMessage) {
 export function getPosts() {
   return dispatch => {
     getJson('http://localhost:8080/posts').then(json => {
-      dispatch(receivePosts(json))
+      dispatch(setPosts(json))
+    }).catch(err => {
+      dispatch(setPostsErrorMessage(err))
     })
   }
 }
@@ -64,4 +71,28 @@ export function receiveSelectedPost(post) {
     type: 'RECEIVE_SELECTED_POST',
     post: post
   }
+}
+
+export function showModal() {
+  return {
+    type: 'SHOW_MODAL'
+  }
+}
+
+export function hideModal() {
+  return {
+    type: 'HIDE_MODAL'
+  }
+}
+
+export function setActivePage(activePage) {
+  return {
+    type: 'SET_ACTIVE_PAGE',
+    activePage
+  }
+}
+
+export function setItems(items) {
+  type: 'SET_ITEMS',
+  items
 }

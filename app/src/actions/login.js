@@ -1,4 +1,6 @@
 import {postJson} from '../utils/fetch.js'
+import Cookies from 'js-cookie'
+
 
 
 export function setUserProperty(property) {
@@ -11,7 +13,7 @@ export function setUserProperty(property) {
 export function setToken(token) {
   return {
     type: 'SET_TOKEN',
-    token: token
+    token
   }
 }
 
@@ -24,11 +26,23 @@ export function setMessage(message) {
 
 export function fetchToken(user) {
   return dispatch => {
-    postJson('http://localhost:8080/login', user)
-      .then(token => {
-        dispatch(setToken(token))
-      }).catch(errorJson => { 
-        dispatch(setMessage(errorJson))
-      })
+    //If token does not exist on Cookie,
+    //Request token from the server
+    if(!Cookies.get('token')) {
+      obtainTokenFromServer(user, dispatch)
+    } else {
+      dispatch(setToken(Cookies.get('token')))
+    }
+
   }
+}
+
+function obtainTokenFromServer(user, dispatch) {
+  postJson('http://localhost:8080/login', user)
+    .then(response => {
+      Cookies.set('token',response.token)
+      dispatch(setToken(response.token))
+    }).catch(errorJson => { 
+      dispatch(setMessage(errorJson))
+    })
 }
