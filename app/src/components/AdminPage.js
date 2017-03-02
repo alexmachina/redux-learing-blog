@@ -1,6 +1,6 @@
 import React from 'react'
 import AppBar from './AppBar.js'
-import LoginContainer from '../../containers/admin/LoginContainer.js'
+import LoginContainer from '../containers/LoginContainer.js'
 
 export default class AdminPage extends React.Component {
   render() {

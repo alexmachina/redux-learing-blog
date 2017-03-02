@@ -5,8 +5,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import { Router, Route, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
-import PostsContainer from './containers/admin/PostsContainer.js'
-import AdminPageContainer from './containers/admin/AdminPageContainer.js'
+import PostsContainer from './containers/PostsContainer.js'
+import AdminPageContainer from './containers/AdminPageContainer.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 

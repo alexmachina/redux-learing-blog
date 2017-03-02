@@ -1,10 +1,8 @@
 let initialState = {
   posts: [],
   selectedPost: {
-    _id: '',
     title: '',
     body: '',
-    date: ''
   }
 }
 export default function posts(state = initialState , action ) {
@@ -16,6 +14,8 @@ export default function posts(state = initialState , action ) {
       return Object.assign({}, state, {selectedPost: post})
     case 'SET_POSTS':
       return Object.assign({}, state, {posts: action.posts})
+    case 'CLEAR_SELECTED_POST':
+      return Object.assign({}, state, {selectedPost: initialState.selectedPost})
     default:
       return state
 

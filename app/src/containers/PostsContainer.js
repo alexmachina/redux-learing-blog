@@ -1,7 +1,7 @@
 import React from 'react'
-import Posts from '../../components/admin/posts/Posts.js'
+import Posts from '../components/Posts.js'
 import { connect } from 'react-redux'
-import {setPostProperty, getPosts, showModal, hideModal } from '../../actions/posts.js'
+import {setPostProperty, getPosts, showModal, hideModal } from '../actions/posts.js'
 
 class PostsContainer extends React.Component {
   componentDidMount() {
@@ -9,12 +9,7 @@ class PostsContainer extends React.Component {
   }
 
   render() {
-    return <Posts posts={this.props.posts}
-            showModal={this.props.showModal}
-            onNewPostClick={this.props.onNewPostClick}
-            closeModal={this.props.closeModal}
-            post={this.props.post}
-            setPostProperty={this.props.setPostProperty}
+    return <Posts  {...this.props}
     />
   }
 }
@@ -23,8 +18,6 @@ let mapStateToProps = state => {
   return {
     posts: state.postsDomain.data.posts,
     showModal: state.postsDomain.ui.showModal,
-    post: state.postsDomain.data.selectedPost
-    
   }
 }
 
@@ -39,9 +32,6 @@ let mapDispatchToProps = (dispatch, getState) => {
     onNewPostClick: () => {
       dispatch(showModal())
     },
-    setPostProperty: (property) => {
-      dispatch(setPostProperty(property))
-    }
   }
 }
 

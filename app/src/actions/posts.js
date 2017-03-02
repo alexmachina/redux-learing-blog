@@ -27,6 +27,34 @@ export function postPost(post) {
   }
 }
 
+export function clearPostsErrorMessage() {
+  return {
+    type: 'CLEAR_POSTS_ERROR_MESSAGE'
+  }
+}
+
+export function savePost(post) {
+  post.date = new Date()
+  return dispatch => {
+    dispatch(clearPostsErrorMessage())
+    postJson('http://localhost:8080/post', post)
+      .then(() => {
+        dispatch(getPosts())
+        dispatch(clearSelectedPost())
+        dispatch(hideModal())
+      }).catch(err => {
+        dispatch(setPostsErrorMessage(err))
+        
+      })
+  }
+}
+
+export function clearSelectedPost() {
+  return {
+    type: 'CLEAR_SELECTED_POST'
+  }
+}
+
 export function setPosts(posts) {
   return {
     type: 'SET_POSTS',
@@ -94,5 +122,5 @@ export function setActivePage(activePage) {
 
 export function setItems(items) {
   type: 'SET_ITEMS',
-  items
+    items
 }

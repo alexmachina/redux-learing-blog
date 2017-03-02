@@ -1,4 +1,4 @@
-import AdminPage from '../../components/admin/AdminPage.js'
+import AdminPage from '../components/AdminPage.js'
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
 

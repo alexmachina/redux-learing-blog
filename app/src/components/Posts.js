@@ -1,6 +1,6 @@
 import React from 'react'
 import {Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
-import PostForm from './PostForm.js'
+import PostFormContainer from '../containers/PostFormContainer.js'
 
 export default class Posts extends React.Component {
   render() {
@@ -29,15 +29,13 @@ export default class Posts extends React.Component {
             </Col>
           ))}
         </Row>
-
         <Row>
           <Modal show={this.props.showModal} onHide={this.props.closeModal}>
             <Modal.Header closeButton>
               <Modal.Title>New Post</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <PostForm post={this.props.post} 
-              setPostProperty={this.props.setPostProperty}/>
+              <PostFormContainer />
             </Modal.Body>
           </Modal>
         </Row>

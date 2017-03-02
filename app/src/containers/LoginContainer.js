@@ -1,6 +1,6 @@
-import Login from '../../components/admin/Login.js'
+import Login from '../components/Login.js'
 import { connect } from 'react-redux'
-import { fetchToken, setUserProperty } from '../../actions/login.js'
+import { fetchToken, setUserProperty } from '../actions/login.js'
 
 let mapStateToProps = (state) => {
   return {
