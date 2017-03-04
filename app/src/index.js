@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import PostsContainer from './containers/PostsContainer.js'
 import AdminPageContainer from './containers/AdminPageContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
+import PostContainer from './containers/PostContainer.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 
@@ -23,6 +24,7 @@ const rootComponent = (
       <Route path="/admin" component={AdminPageContainer} >
         <Route path="/posts" component={PostsContainer} />
         <Route path="/login" component={LoginContainer} />
+        <Route path="/post/:id" component={PostContainer} />
       </Route>
     </Router>
   </Provider>

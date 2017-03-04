@@ -39,7 +39,9 @@ export default class PostForm extends React.Component {
 
             </FormGroup>
             <Col xs={12} className="text-right">
-              <Button type="submit" bsStyle="primary">Post!</Button>
+              <Button type="submit" bsStyle="primary">
+                  {this.props.isFetching ? "Loading..." : "New Post"}
+                </Button>
             </Col>
             <p>{this.props.errorMessage}</p>
           </form>

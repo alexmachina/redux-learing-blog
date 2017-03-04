@@ -40,9 +40,8 @@ export function fetchToken(user) {
 function obtainTokenFromServer(user, dispatch) {
   postJson('http://localhost:8080/login', user)
     .then(response => {
-      console.log(response)
-      Cookies.set('token',response.token)
-      dispatch(setToken(response.token))
+      Cookies.set('token',response)
+      dispatch(setToken(response))
     }).catch(errorJson => { 
       dispatch(setMessage(errorJson))
     })

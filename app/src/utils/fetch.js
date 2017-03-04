@@ -51,7 +51,7 @@ export function postJson(url, json) {
       body: JSON.stringify(json)
     }).then(response =>{
       if(response.ok) {
-        response.json().then(json => resolve(json))
+        response.text().then(text => resolve(text))
       } else {
         response.text().then(text => reject(text))
       }

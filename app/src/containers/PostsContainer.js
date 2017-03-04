@@ -18,7 +18,8 @@ let mapStateToProps = state => {
   return {
     posts: state.postsDomain.data.posts,
     showModal: state.postsDomain.ui.showModal,
-    errorMessage: state.postsDomain.ui.errorMessage
+    errorMessage: state.postsDomain.ui.errorMessage,
+    isFetching: state.postsDomain.ui.isFetching
   }
 }
 

@@ -7,11 +7,6 @@ export function setPostProperty(property) {
   }
 }
 
-export function toggleFetching() {
-  return {
-    type: 'TOGGLE_FETCHING'
-  }
-}
 
 export function postPost(post) {
   return dispatch => {
@@ -33,18 +28,27 @@ export function clearPostsErrorMessage() {
   }
 }
 
+export function toggleFetching() {
+  return {
+    type:'TOGGLE_POSTS_FETCHING'
+  }
+}
+
 export function savePost(post) {
   post.date = new Date()
   return dispatch => {
+
+    dispatch(toggleFetching())
     dispatch(clearPostsErrorMessage())
     postJson('http://localhost:8080/post', post)
       .then(() => {
+        dispatch(toggleFetching())
         dispatch(getPosts())
         dispatch(clearSelectedPost())
         dispatch(hideModal())
       }).catch(err => {
         dispatch(setPostsErrorMessage(err))
-        
+
       })
   }
 }

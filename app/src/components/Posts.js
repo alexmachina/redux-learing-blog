@@ -1,12 +1,12 @@
 import React from 'react'
 import {Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
 import PostFormContainer from '../containers/PostFormContainer.js'
+import {Link} from 'react-router'
 
 export default class Posts extends React.Component {
   render() {
     return (
       <div className="container">
-
         <p>{this.props.errorMessage}</p>
         <Jumbotron>
           <Row>
@@ -19,14 +19,17 @@ export default class Posts extends React.Component {
               <Button
                 onClick={() => this.props.onNewPostClick()}
                 bsSize="lg" 
-                bsStyle="primary">New Post</Button>
+                bsStyle="primary"> 
+                Post</Button>
             </Col>
           </Row>
         </Jumbotron>
         <Row>
           {this.props.posts.map(post => (
             <Col xs={12} key={post._id}>
-              <h1>{post.title}</h1>
+              <h1>
+                <Link to={`/post/${post._id}`}>{post.title}</Link>
+              </h1>
               <p>{post.body}</p>
             </Col>
           ))}
