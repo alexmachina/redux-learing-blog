@@ -6,7 +6,6 @@ let mapStateToProps =  (state) => {
   let token = state.login.token
   if(!token) {
     token = Cookies.get('token')
-    
   }
   
   return {

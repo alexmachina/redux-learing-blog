@@ -120,7 +120,3 @@ export function setActivePage(activePage) {
   }
 }
 
-export function setItems(items) {
-  type: 'SET_ITEMS',
-    items
-}

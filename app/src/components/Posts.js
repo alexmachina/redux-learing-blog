@@ -6,6 +6,8 @@ export default class Posts extends React.Component {
   render() {
     return (
       <div className="container">
+
+        <p>{this.props.errorMessage}</p>
         <Jumbotron>
           <Row>
             <Col xs={12}>

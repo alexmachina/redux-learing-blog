@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from '../components/Posts.js'
 import { connect } from 'react-redux'
-import {setPostProperty, getPosts, showModal, hideModal } from '../actions/posts.js'
+import {getPosts, showModal, hideModal } from '../actions/posts.js'
 
 class PostsContainer extends React.Component {
   componentDidMount() {
@@ -18,6 +18,7 @@ let mapStateToProps = state => {
   return {
     posts: state.postsDomain.data.posts,
     showModal: state.postsDomain.ui.showModal,
+    errorMessage: state.postsDomain.ui.errorMessage
   }
 }
 

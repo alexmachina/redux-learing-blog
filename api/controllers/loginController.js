@@ -12,7 +12,7 @@ class loginController {
     findUser.then(user => {
       if (user) {
         let token = jwt.sign(user, 'shh')
-        res.json({token: token})
+        res.json({token})
       } else {
         res.status(404).send("User not found")
       }

@@ -25,14 +25,6 @@ let mapDispatchToProps = (dispatch,ownProps) => {
   }
 }
 
-let mergeProps = (stateProps, dispatchProps) => {
-  return {
-    ...stateProps,
-    ...dispatchProps,
-    }
-    
-  }
-
 
 let PostFormContainer = connect(
   mapStateToProps,
