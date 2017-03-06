@@ -10,15 +10,18 @@ export default class Post extends React.Component {
         <Row>
           <Jumbotron>
             <h1>{this.props.post.title}</h1>
-            <Button onClick={this.props.onEditClick} bsStyle="primary">
-              Edit
-            </Button>
-
+            <Row>
+            <Col xs={12} className="text-right">
+              <Button bsSize="lg" onClick={this.props.onEditClick} bsStyle="primary">
+                Edit
+              </Button>
+            </Col>
+          </Row>
           </Jumbotron>
         </Row>
         <Row>
-          <Col xs={12}>
-            {this.props.post.body}
+          <Col xs={12} >
+            <div dangerouslySetInnerHTML={{__html: this.props.post.body}} />
           </Col>
         </Row>
         <Modal show={this.props.showModal} onHide={this.props.closeModal}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
+import {Pagination, Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
 import PostFormContainer from '../containers/PostFormContainer.js'
 import {Link} from 'react-router'
 
@@ -34,6 +34,12 @@ export default class Posts extends React.Component {
             </Col>
           ))}
         </Row>
+        <Pagination
+          bsSize="large"
+          items={this.props.items}
+          activePage={this.props.activePage}
+          onSelect={this.props.handlePaginationSelect}
+        />
         <Row>
           <Modal show={this.props.showModal} onHide={this.props.closeModal}>
             <Modal.Header closeButton>

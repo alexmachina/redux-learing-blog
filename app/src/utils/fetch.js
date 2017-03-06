@@ -1,9 +1,7 @@
 import Cookies from 'js-cookie'
 
 export function getJson(url) {
-  return new Promise((resolve,reject) => {
-    fetch(url, {
-      headers: new Headers({
+  return new Promise((resolve,reject) => { fetch(url, { headers: new Headers({
         authorization: Cookies.get('token')
       })
     }
@@ -22,20 +20,20 @@ export function getJson(url) {
 }
 
 export function putJson(url, json) {
-  console.log(JSON.stringify(json))
   return new Promise((resolve, reject) => {
     return fetch(url, {
       method:'PUT',
       headers: new Headers({
         'Content-Type' : 'application/json',
         'Accept' : 'application/json'
-      })
+      }),
+      body: JSON.stringify(json)
     }).then(response =>{
       if(response.ok)
         response.text().then(text => resolve(text))
       else
         response.text().then(text => reject(text))
-    }).catch(err => console.log(err))
+    }).catch(err => reject(err))
   })
 
 }

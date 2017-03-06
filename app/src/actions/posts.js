@@ -37,20 +37,45 @@ export function toggleFetching() {
 export function savePost(post) {
   post.date = new Date()
   return dispatch => {
+    if (post._id) {
+      updatePost(post, dispatch)
+    } else {
+      insertPost(post, dispatch)
+    }
 
-    dispatch(toggleFetching())
-    dispatch(clearPostsErrorMessage())
-    postJson('http://localhost:8080/post', post)
-      .then(() => {
-        dispatch(toggleFetching())
-        dispatch(getPosts())
-        dispatch(clearSelectedPost())
-        dispatch(hideModal())
-      }).catch(err => {
-        dispatch(setPostsErrorMessage(err))
-
-      })
   }
+}
+
+function updatePost(post, dispatch) {
+  dispatch(toggleFetching())
+  dispatch(clearPostsErrorMessage())
+  putJson('http://localhost:8080/post/'+post._id, post)
+    .then(() => {
+      dispatch(toggleFetching())
+      dispatch(getPosts())
+      dispatch(clearSelectedPost())
+      dispatch(getPost(post._id))
+      dispatch(hideModal())
+    }).catch(err => {
+      dispatch(setPostsErrorMessage(err))
+
+    })
+}
+
+function insertPost(post, dispatch) {
+  dispatch(toggleFetching())
+  dispatch(clearPostsErrorMessage())
+  postJson('http://localhost:8080/post', post)
+    .then(() => {
+      dispatch(toggleFetching())
+      dispatch(getPosts())
+      dispatch(clearSelectedPost())
+      dispatch(hideModal())
+    }).catch(err => {
+      dispatch(setPostsErrorMessage(err))
+
+    })
+
 }
 
 export function clearSelectedPost() {
@@ -73,10 +98,11 @@ export function setPostsErrorMessage(errorMessage) {
   }
 }
 
-export function getPosts() {
+export function getPosts(page) {
   return dispatch => {
-    getJson('http://localhost:8080/posts').then(json => {
-      dispatch(setPosts(json))
+    getJson(`http://localhost:8080/posts?page=${page}`).then(json => {
+      dispatch(setPosts(json.posts))
+      dispatch(setPostsItems(Math.ceil(json.count/5)))
     }).catch(err => {
       dispatch(setPostsErrorMessage(err))
     })
@@ -117,10 +143,19 @@ export function hideModal() {
   }
 }
 
-export function setActivePage(activePage) {
+export function setPostsActivePage(activePage) {
   return {
-    type: 'SET_ACTIVE_PAGE',
+    type: 'SET_POSTS_ACTIVE_PAGE',
     activePage
   }
 }
+
+export function setPostsItems(items) {
+  return {
+    type: 'SET_POSTS_ITEMS',
+    items
+  }
+}
+
+
 

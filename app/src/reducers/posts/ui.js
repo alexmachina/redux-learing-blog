@@ -1,10 +1,10 @@
 let initialState = {
   errorMessage: '',
-  activePage: '',
-  items:'',
   showModal: false,
-  fetching: false
-
+  fetching: false,
+  items: 0,
+  activePage: 1,
+  onSelect: () => {}
 }
 
 export default function ui(state = initialState, action) {
@@ -19,6 +19,10 @@ export default function ui(state = initialState, action) {
       return Object.assign({}, state, {errorMessage: ''})
     case 'TOGGLE_POSTS_FETCHING':
       return Object.assign({}, state, {fetching: !state.fetching})
+    case 'SET_POSTS_ACTIVE_PAGE':
+      return Object.assign({}, state, {activePage: action.activePage})
+    case 'SET_POSTS_ITEMS':
+      return Object.assign({}, state, {items: action.items})
     default:
       return state
   }

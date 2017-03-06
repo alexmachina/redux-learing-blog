@@ -3,16 +3,13 @@ import {ControlLabel, FormGroup, FormControl,
   Row,  Button, Col} from 'react-bootstrap'
 import RichTextEditor from 'react-rte'
 
+
 export default class PostForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: RichTextEditor.createEmptyValue()
-    }
-  }
   onSubmit(e) {
     e.preventDefault()
-    this.props.onSubmit(this.props.post)
+    let post = this.props.post
+    post.body = post.body.toString('html')
+    this.props.onSubmit(post)
   }
   render() {
     return (
@@ -27,27 +24,24 @@ export default class PostForm extends React.Component {
               onChange={this.props.onTitleChange}
               placeholder="Title..."
             />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Body</ControlLabel>
-            <FormControl
-              componentClass="textarea"
-              value={this.props.post.body}
-              onChange={this.props.onBodyChange}
-            />
-
-
             </FormGroup>
-            <Col xs={12} className="text-right">
-              <Button type="submit" bsStyle="primary">
-                  {this.props.isFetching ? "Loading..." : "New Post"}
-                </Button>
-            </Col>
-            <p>{this.props.errorMessage}</p>
-          </form>
+            <FormGroup> 
+              <RichTextEditor
+                value={this.props.post.body}
+                onChange={this.props.onBodyChange}
+              />
+      
+        </FormGroup>
+        <Col xs={12} className="text-right">
+          <Button type="submit" bsStyle="primary">
+            {this.props.isFetching ? "Loading..." : "New Post"}
+          </Button>
         </Col>
-      </Row>
-      )
+        <p>{this.props.errorMessage}</p>
+      </form>
+    </Col>
+  </Row>
+    )
 
-      }
-      }
+  }
+}

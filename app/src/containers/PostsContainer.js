@@ -1,11 +1,12 @@
 import React from 'react'
 import Posts from '../components/Posts.js'
 import { connect } from 'react-redux'
-import {getPosts, showModal, hideModal } from '../actions/posts.js'
+import {getPosts, clearSelectedPost,
+  setPostsActivePage, showModal, hideModal } from '../actions/posts.js'
 
 class PostsContainer extends React.Component {
   componentDidMount() {
-    this.props.getPosts()
+    this.props.getPosts(this.props.activePage)
   }
 
   render() {
@@ -19,21 +20,30 @@ let mapStateToProps = state => {
     posts: state.postsDomain.data.posts,
     showModal: state.postsDomain.ui.showModal,
     errorMessage: state.postsDomain.ui.errorMessage,
-    isFetching: state.postsDomain.ui.isFetching
+    isFetching: state.postsDomain.ui.isFetching,
+    activePage: state.postsDomain.ui.activePage,
+    items: state.postsDomain.ui.items,
+    
+
   }
 }
 
 let mapDispatchToProps = (dispatch, getState) => {
   return {
-    getPosts: () => {
-      dispatch(getPosts())
+    getPosts: (page) => {
+      dispatch(getPosts(page))
     },
     closeModal: () => {
       dispatch(hideModal())
     },
     onNewPostClick: () => {
+      dispatch(clearSelectedPost())
       dispatch(showModal())
     },
+    handlePaginationSelect: (index) => {
+      dispatch(setPostsActivePage(index))
+      dispatch(getPosts(index))
+    }
   }
 }
 

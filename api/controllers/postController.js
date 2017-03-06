@@ -2,15 +2,28 @@ const postModel = require('../models/postModel.js')
 
 class PostController {
   getPosts(req, res) {
+  
     let page = req.param('page')
-
-    let find = postModel.find({})
-      .limit(10)
-      .skip((page-1) * 10)
+    debugger;
+    let findPosts = postModel.find({})
+      .limit(5)
+      .skip((page-1) * 5)
       .exec()
 
-    find.then(posts => res.json(posts))
-    find.catch(err => res.status(500).json(err))
+    
+    let findCount = postModel.count({})
+    let promArr = [findPosts, findCount]
+
+    Promise.all([findPosts, findCount]).then(results => {
+      res.json({
+        posts: results[0],
+        count: results[1]
+      })
+    }).catch(err => {
+      console.log(err)
+      //res.status(500).send(err)
+    })
+
   }
 
   getPost(req, res) {
