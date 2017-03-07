@@ -2,15 +2,16 @@ import React from 'react'
 import {Pagination, Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
 import PostFormContainer from '../containers/PostFormContainer.js'
 import {Link} from 'react-router'
+import moment from 'moment'
 
 export default class Posts extends React.Component {
   render() {
     return (
       <div className="container">
         <p>{this.props.errorMessage}</p>
-        <Jumbotron>
+        <Jumbotron className="blog-jumbotron">
           <Row>
-            <Col xs={12}>
+            <Col xs={12} className="text-center">
               <h1>Posts</h1>
             </Col>
           </Row>
@@ -19,7 +20,7 @@ export default class Posts extends React.Component {
               <Button
                 onClick={() => this.props.onNewPostClick()}
                 bsSize="lg" 
-                bsStyle="primary"> 
+                className="blog-jumbotron-button"> 
                 Post</Button>
             </Col>
           </Row>
@@ -28,9 +29,12 @@ export default class Posts extends React.Component {
           {this.props.posts.map(post => (
             <Col xs={12} key={post._id}>
               <h1>
-                <Link to={`/post/${post._id}`}>{post.title}</Link>
+                <Link to={`/post/${post._id}`} className="post-link">{post.title}</Link>
               </h1>
-              <p>{post.body}</p>
+                <h3>{moment(post.date).format('DD/MM/YYYY')}</h3>
+              <Col xs={12}>
+                <div dangerouslySetInnerHTML={{__html: post.body}} />
+              </Col>
             </Col>
           ))}
         </Row>

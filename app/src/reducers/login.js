@@ -14,6 +14,8 @@ export default function (state = {
       return Object.assign({}, state, {token: action.token})
     case 'SET_MESSAGE':
       return Object.assign({}, state, {message: action.message})
+    case 'CLEAR_AUTHORIZATION_TOKEN':
+      return Object.assign({}, state, {token: null})
     default:
       return state
 

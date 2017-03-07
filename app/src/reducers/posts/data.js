@@ -3,9 +3,12 @@ let initialState = {
   posts: [],
   selectedPost: {
     title: '',
-    body: RichTextEditor.createEmptyValue()
+    body: RichTextEditor.createEmptyValue(),
+    date: new Date(),
+    tags: []
   }
 }
+
 export default function posts(state = initialState , action ) {
   switch(action.type) {
     case 'SET_SELECTED_POST':

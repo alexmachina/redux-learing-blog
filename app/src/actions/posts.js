@@ -35,14 +35,25 @@ export function toggleFetching() {
 }
 
 export function savePost(post) {
-  post.date = new Date()
   return dispatch => {
-    if (post._id) {
-      updatePost(post, dispatch)
-    } else {
-      insertPost(post, dispatch)
-    }
+    
+    dispatch(validatePostTitle(post.title))
+    dispatch(validatePostBody(post.body))
 
+    if(post.title && post.body.toString('html')) {
+      post.body = post.body.toString('html')
+      post.date = new Date()
+      if(typeof post.tags.split == 'function') {
+        post.tags = post.tags.split(' ')
+      }
+      if (post._id) {
+        updatePost(post, dispatch)
+      } else {
+        insertPost(post, dispatch)
+      }
+    } else {
+      dispatch(clearSelectedPost())
+    }
   }
 }
 
@@ -67,10 +78,11 @@ function insertPost(post, dispatch) {
   dispatch(clearPostsErrorMessage())
   postJson('http://localhost:8080/post', post)
     .then(() => {
-      dispatch(toggleFetching())
-      dispatch(getPosts())
+
       dispatch(clearSelectedPost())
       dispatch(hideModal())
+      dispatch(toggleFetching())
+      dispatch(getPosts())
     }).catch(err => {
       dispatch(setPostsErrorMessage(err))
 
@@ -157,5 +169,48 @@ export function setPostsItems(items) {
   }
 }
 
+export function validatePostTitle(title) {
+  return dispatch => {
+    if (title) {
+      dispatch(setPostTitleAsValid())
+    } else {
+      dispatch(setPostTitleAsInvalid())
+    }
+  }
+}
+
+export function setPostTitleAsValid() {
+  return {
+    type: 'SET_POST_TITLE_AS_VALID'
+  }
+}
+
+export function setPostTitleAsInvalid() {
+  return {
+    type: 'SET_POST_TITLE_AS_INVALID'
+  }
+}
+
+export function setPostBodyAsValid() {
+  return {
+    type: 'SET_POST_BODY_AS_VALID'
+  }
+}
+
+export function setPostBodyAsInvalid() {
+  return {
+    type: 'SET_POST_BODY_AS_INVALID'
+  }
+}
+
+export function validatePostBody(body) {
+  return dispatch => {
+    if (body.toString('markdown').length > 2) {
+      dispatch(setPostBodyAsValid())
+    } else {
+      dispatch(setPostBodyAsInvalid())
+    }
+  }
+}
 
 

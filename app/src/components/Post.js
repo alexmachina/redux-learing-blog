@@ -8,15 +8,17 @@ export default class Post extends React.Component {
     return (
       <div className="container">
         <Row>
-          <Jumbotron>
-            <h1>{this.props.post.title}</h1>
-            <Row>
-            <Col xs={12} className="text-right">
-              <Button bsSize="lg" onClick={this.props.onEditClick} bsStyle="primary">
-                Edit
-              </Button>
+          <Jumbotron className="blog-jumbotron">
+            <Col xs={12} className="text-center">
+              <h1>{this.props.post.title}</h1>
             </Col>
-          </Row>
+            <Row>
+              <Col xs={12} className="text-right">
+                <Button className="blog-jumbotron-button" bsSize="lg" onClick={this.props.onEditClick}>
+                  Edit
+                </Button>
+              </Col>
+            </Row>
           </Jumbotron>
         </Row>
         <Row>

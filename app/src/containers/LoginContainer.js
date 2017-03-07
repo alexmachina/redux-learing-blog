@@ -1,6 +1,7 @@
 import Login from '../components/Login.js'
 import { connect } from 'react-redux'
 import { fetchToken, setUserProperty } from '../actions/login.js'
+import {browserHistory} from 'react-router'
 
 let mapStateToProps = (state) => {
   return {

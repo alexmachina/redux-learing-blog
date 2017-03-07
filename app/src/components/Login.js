@@ -15,7 +15,7 @@ class Login extends React.Component {
       <div className="login-form container" style={styles}>
         <Row>
           <Col xs={12} sm={4} smOffset={4}>
-            <Jumbotron>
+            <Jumbotron className="blog-jumbotron">
               <h1 className="text-center">Alex's Blog</h1>
             </Jumbotron>
             <form onSubmit={this.onSubmit.bind(this)}>
@@ -36,27 +36,29 @@ class Login extends React.Component {
                   onChange={(e) => this.props.onPasswordChange(e.target.value)}
                 />
               </FormGroup>
-              <Button type="submit" bsSize="lg">
-                Login
-              </Button>
-              <span>{this.props.message}</span>
-              </form>
+              <Col xs={12} className="text-center">
+                <Button className="blog-form-button" type="submit" bsSize="lg">
+                  Login
+                </Button>
               </Col>
-              </Row>
-              </div>
-            )
-            }
-            }
+              <span>{this.props.message}</span>
+            </form>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+}
 
-            Login.propTypes = {
-              user: React.PropTypes.shape({
-                username: React.PropTypes.string,
-                password: React.PropTypes.string
-              }).isRequired,
-              onSubmit: React.PropTypes.func.isRequired,
-              onUsernameChange: React.PropTypes.func.isRequired,
-              onPasswordChange: React.PropTypes.func.isRequired,
-              message: React.PropTypes.string
-            }
+Login.propTypes = {
+  user: React.PropTypes.shape({
+    username: React.PropTypes.string,
+    password: React.PropTypes.string
+  }).isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
+  onUsernameChange: React.PropTypes.func.isRequired,
+  onPasswordChange: React.PropTypes.func.isRequired,
+  message: React.PropTypes.string
+}
 
-            export default Login
+export default Login

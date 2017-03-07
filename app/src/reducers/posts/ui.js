@@ -4,7 +4,9 @@ let initialState = {
   fetching: false,
   items: 0,
   activePage: 1,
-  onSelect: () => {}
+  onSelect: () => {},
+  isPostTitleValid: true,
+  isPostBodyValid: true
 }
 
 export default function ui(state = initialState, action) {
@@ -23,6 +25,14 @@ export default function ui(state = initialState, action) {
       return Object.assign({}, state, {activePage: action.activePage})
     case 'SET_POSTS_ITEMS':
       return Object.assign({}, state, {items: action.items})
+    case 'SET_POST_TITLE_AS_VALID':
+      return Object.assign({}, state, {isPostTitleValid: true})
+    case 'SET_POST_TITLE_AS_INVALID':
+      return Object.assign({}, state, {isPostTitleValid: false})
+    case 'SET_POST_BODY_AS_VALID':
+      return Object.assign({}, state, {isPostBodyValid: true})
+    case 'SET_POST_BODY_AS_INVALID':
+      return Object.assign({}, state, {isPostBodyValid: false})
     default:
       return state
   }

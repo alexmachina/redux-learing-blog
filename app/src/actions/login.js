@@ -1,5 +1,6 @@
 import {postJson} from '../utils/fetch.js'
 import Cookies from 'js-cookie'
+import {push, replace} from 'react-router-redux'
 
 
 
@@ -24,12 +25,21 @@ export function setMessage(message) {
   }
 }
 
+export function clearAuthorizationToken() {
+  return {
+    type: 'CLEAR_AUTHORIZATION_TOKEN'
+  }
+}
+
 export function fetchToken(user) {
   return dispatch => {
     //If token does not exist on Cookie,
     //Request token from the server
-    if(!Cookies.get('token') || Cookies.get('token') === 'undefined') {
+    //
+    if(!Cookies.get('token') || Cookies.get('token') === 'undefined' || Cookies.get('token') === 'null') {
       obtainTokenFromServer(user, dispatch)
+
+      dispatch(replace('/posts'))
     } else {
       dispatch(setToken(Cookies.get('token')))
     }

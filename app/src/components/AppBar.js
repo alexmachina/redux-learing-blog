@@ -5,17 +5,17 @@ export default class AppBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar>
+        <Navbar id="navbar">
           <Navbar.Header>
             <Navbar.Brand>
               Alex's Blog
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem href="/#/posts">Posts</NavItem>
+            <NavItem href="/posts">Posts</NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem href="">Logout</NavItem>
+            <NavItem onClick={this.props.onLogoutClick}>Logout</NavItem>
           </Nav>
         </Navbar>
       </div>

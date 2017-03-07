@@ -12,3 +12,46 @@ body {
 #adminPage: {
   margin-top:350px !important;
 }
+
+#navbar{
+  background-color:orange;
+}
+
+  #navbar ul li a {
+  color:white !important
+}
+
+.navbar-brand {
+    color:white !important
+
+}
+
+.blog-jumbotron {
+  background-color:orange;
+  color:white;
+}
+
+.blog-jumbotron-button {
+  background-color:white;
+  color:orange;
+}
+
+.blog-form-button {
+  background-color:orange;
+  color:white;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  color:white;
+  background-color:orange;
+  border-color:orange;
+}
+
+.pagination>li>a, .pagination>li>span {
+  color:orange;
+}
+
+.post-link {
+  color:orange;
+}
+

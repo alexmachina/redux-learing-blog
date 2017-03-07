@@ -5,10 +5,10 @@ import LoginContainer from '../containers/LoginContainer.js'
 export default class AdminPage extends React.Component {
   render() {
     let componentToRender = null 
-    if (this.props.token) {
+    if (this.props.token && this.props.token != 'null') {
       componentToRender = (
         <div>
-          <AppBar />
+          <AppBar onLogoutClick={this.props.onLogoutClick} />
           {this.props.children}
         </div>
       )
