@@ -20,7 +20,7 @@ export default class Posts extends React.Component {
               <Button
                 onClick={() => this.props.onNewPostClick()}
                 bsSize="lg" 
-                className="blog-jumbotron-button"> 
+                className="blog-form-button"> 
                 Post</Button>
             </Col>
           </Row>

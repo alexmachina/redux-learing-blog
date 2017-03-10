@@ -2,9 +2,6 @@ import PostForm from '../components/PostForm.js'
 import { connect } from 'react-redux'
 import { setPostProperty, savePost, validatePostTitle, validatePostBody } from '../actions/posts.js'
 
-import RichTextEditor from 'react-rte'
-
-
 let mapStateToProps = state => {
   let post = state.postsDomain.data.selectedPost
   return {

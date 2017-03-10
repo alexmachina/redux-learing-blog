@@ -9,6 +9,7 @@ import PostsContainer from './containers/PostsContainer.js'
 import AdminPageContainer from './containers/AdminPageContainer.js'
 import LoginContainer from './containers/LoginContainer.js'
 import PostContainer from './containers/PostContainer.js'
+import CategoriesContainer from './containers/CategoriesContainer.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux'
@@ -28,6 +29,7 @@ const rootComponent = (
         <Route path="/posts" component={PostsContainer} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/post/:id" component={PostContainer} />
+        <Route path="/categories" component={CategoriesContainer} />
       </Route>
     </Router>
   </Provider>
