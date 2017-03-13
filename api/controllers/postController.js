@@ -6,8 +6,11 @@ class PostController {
     let page = req.param('page')
     debugger;
     let findPosts = postModel.find({})
+      .sort('-date')
       .limit(5)
       .skip((page-1) * 5)
+
+      .populate('category')
       .exec()
 
     
@@ -27,7 +30,8 @@ class PostController {
   }
 
   getPost(req, res) {
-    let find = postModel.findById(req.params.id).exec()
+    let find = postModel.findById(req.params.id).populate('category').exec()
+    
     find.then(post => res.json(post))
     find.catch(err => res.status(500).json(err))
   }

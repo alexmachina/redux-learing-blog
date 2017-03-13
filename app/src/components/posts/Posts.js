@@ -1,6 +1,6 @@
 import React from 'react'
 import {Pagination, Row, Col, Jumbotron, Button, Modal} from 'react-bootstrap'
-import PostFormContainer from '../containers/PostFormContainer.js'
+import PostFormContainer from '../../containers/posts/PostFormContainer.js'
 import {Link} from 'react-router'
 import moment from 'moment'
 
@@ -31,7 +31,8 @@ export default class Posts extends React.Component {
               <h1>
                 <Link to={`/post/${post._id}`} className="post-link">{post.title}</Link>
               </h1>
-                <h3>{moment(post.date).format('DD/MM/YYYY')}</h3>
+              <h4>In: {post.category.name}</h4>
+                <h4>{moment(post.date).format('DD/MM/YYYY')}</h4>
               <Col xs={12}>
                 <div dangerouslySetInnerHTML={{__html: post.body}} />
               </Col>

@@ -2,6 +2,7 @@ import RichTextEditor from 'react-rte'
 let initialState = {
   posts: [],
   selectedPost: {
+    category: '',
     title: '',
     body: RichTextEditor.createEmptyValue(),
     date: new Date(),

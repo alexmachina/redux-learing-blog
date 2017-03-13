@@ -6,7 +6,8 @@ let initialState = {
   activePage: 1,
   onSelect: () => {},
   isPostTitleValid: true,
-  isPostBodyValid: true
+  isPostBodyValid: true,
+  isPostCategoryValid: true
 }
 
 export default function ui(state = initialState, action) {
@@ -33,6 +34,10 @@ export default function ui(state = initialState, action) {
       return Object.assign({}, state, {isPostBodyValid: true})
     case 'SET_POST_BODY_AS_INVALID':
       return Object.assign({}, state, {isPostBodyValid: false})
+    case 'SET_POST_CATEGORY_AS_VALID':
+      return Object.assign({}, state, {isPostCategoryValid: true})
+    case 'SET_POST_CATEGORY_AS_INVALID':
+      return Object.assign({}, state, {isPostCategoryValid: false})
     default:
       return state
   }

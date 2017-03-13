@@ -17,6 +17,8 @@ let initialState = {
       return Object.assign({}, state, {categories: action.categories})
     case 'CLEAR_SELECTED_CATEGORY':
       return Object.assign({}, state, {selectedCategory: initialState.selectedCategory})
+    case 'SET_SELECTED_CATEGORY':
+      return Object.assign({}, state, {selectedCategory: action.category})
     default:
       return state
   }

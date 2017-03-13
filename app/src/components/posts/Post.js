@@ -1,5 +1,5 @@
 import React from 'react'
-import PostFormContainer from '../containers/PostFormContainer'
+import PostFormContainer from '../../containers/posts/PostFormContainer'
 import {Row,Modal, Col, Jumbotron, Button} from 'react-bootstrap'
 
 

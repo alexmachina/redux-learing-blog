@@ -1,8 +1,8 @@
 import React from 'react'
-import Posts from '../components/Posts.js'
+import Posts from '../../components/posts/Posts.js'
 import { connect } from 'react-redux'
 import {getPosts, clearSelectedPost,
-  setPostsActivePage, showModal, hideModal } from '../actions/posts.js'
+  setPostsActivePage, showModal, hideModal } from '../../actions/posts.js'
 
 class PostsContainer extends React.Component {
   componentDidMount() {

@@ -39,6 +39,7 @@ export function savePost(post) {
     
     dispatch(validatePostTitle(post.title))
     dispatch(validatePostBody(post.body))
+    dispatch(validatePostCategory(post.category))
 
     if(post.title && post.body.toString('html')) {
       post.body = post.body.toString('html')
@@ -176,6 +177,28 @@ export function validatePostTitle(title) {
     } else {
       dispatch(setPostTitleAsInvalid())
     }
+  }
+}
+
+export function validatePostCategory(category) {
+  return dispatch => {
+    if (category) {
+      dispatch(setPostCategoryAsValid())
+    } else {
+      dispatch(setPostCategoryAsInvalid())
+    }
+  }
+}
+
+export function setPostCategoryAsValid() {
+  return {
+    type: 'SET_POST_CATEGORY_AS_VALID'
+  }
+}
+
+export function setPostCategoryAsInvalid() {
+  return {
+    type: 'SET_POST_CATEGORY_AS_INVALID'
   }
 }
 
