@@ -1,5 +1,6 @@
 import React from 'react'
 import { Nav, Navbar, NavItem} from 'react-bootstrap'
+import {Link} from 'react-router'
 
 export default class AppBar extends React.Component {
   render() {
@@ -8,12 +9,14 @@ export default class AppBar extends React.Component {
         <Navbar id="navbar">
           <Navbar.Header>
             <Navbar.Brand>
-              Alex's Blog
+              <Link to="/">
+                Alex's Blog
+              </Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem href="/categories">Categories</NavItem>
-            <NavItem href="/posts">Posts</NavItem>
+            <NavItem href="/admin/categories">Categories</NavItem>
+            <NavItem href="/admin/posts">Posts</NavItem>
           </Nav>
 
           <Nav pullRight>

@@ -20,6 +20,9 @@ body {
   #navbar ul li a {
   color:white !important
 }
+ #navbar ul .drop a a {
+  color:orange !important
+}
 
 .navbar-brand {
     color:white !important
@@ -54,4 +57,5 @@ body {
 .post-link {
   color:orange;
 }
+
 
